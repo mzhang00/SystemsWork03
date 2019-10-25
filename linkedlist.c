@@ -5,17 +5,18 @@
 
 struct node {char * name; struct node * next;};
 
-void print_list(struct node *){
-  while (node.next != '\0'){
+void print_list(struct node * firstnode){
+  struct node * currentnode = firstnode;
+  while (currentnode.next != '\0'){
     //
   }
 }
 
-struct node * insert_front(struct node *, int){
+struct node * insert_front(struct node * firstnode, int i){
   //
 }
 
-struct node * free_list(struct node *){
+struct node * free_list(struct node * firstnode){
   //
 }
 
