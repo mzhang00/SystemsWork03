@@ -39,8 +39,28 @@ struct node * free_list(struct node * firstnode){
   return currentnode;
 }
 
-struct node * remove_node(struct node *front, int data){
-  //
+struct node * remove_node(struct node * firstnode, int data){
+  //if data is the first node, just rmv it
+  if (firstnode->i == data){
+    struct node * newfirst = firstnode->next;
+    free(firstnode);
+    return newfirst;
+  }else{
+    struct node * this = firstnode->next;
+    struct node * last = firstnode;
+    //if data isn't first, find it and make the one b4 connect to the one after
+    while(this != NULL){
+      if (this-> i == data){
+        last->next = this->next;
+        free(this);
+        return firstnode;
+      }
+      last = last->next;
+      this = this->next;
+    }
+  }
+  //data not in list
+  return firstnode;
 }
 
 int main(){
@@ -56,6 +76,22 @@ int main(){
   }  
 
   printf("Printing list:\n");
+  print_list(list);
+
+  printf("Removing 9:\n");
+  list = remove_node(list,9);
+  print_list(list);
+
+  printf("Removing 4:\n");
+  list = remove_node(list,4);
+  print_list(list);
+
+  printf("Removing 0:\n");
+  list = remove_node(list,0);
+  print_list(list);
+
+  printf("Removing -1:\n");
+  list = remove_node(list,-1);
   print_list(list);
 
   printf("Freeing list.\n");
